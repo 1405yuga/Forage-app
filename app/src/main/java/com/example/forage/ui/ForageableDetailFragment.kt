@@ -23,6 +23,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.forage.BaseApplication
@@ -66,8 +67,12 @@ class ForageableDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = navigationArgs.id
-        // TODO: Observe a forageable that is retrieved by id, set the forageable variable,
+        //  Observe a forageable that is retrieved by id, set the forageable variable,
         //  and call the bind forageable method
+        viewModel.getForageable(id).observe(this.viewLifecycleOwner, Observer {
+            forageable = it
+            bindForageable()
+        })
     }
 
     private fun bindForageable() {
