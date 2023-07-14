@@ -55,7 +55,11 @@ class ForageableViewModel(private val forageableDao: ForageableDao) : ViewModel(
             notes = notes
         )
 
-    // TODO: launch a coroutine and call the DAO method to add a Forageable to the database within it
+    //  launch a coroutine and call the DAO method to add a Forageable to the database within it
+        viewModelScope.launch(Dispatchers.IO) {
+            forageableDao.insert(forageable)
+        }
+
 
     }
 
