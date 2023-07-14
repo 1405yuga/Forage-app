@@ -27,6 +27,7 @@ import com.example.forage.R
 import com.example.forage.databinding.FragmentForageableListBinding
 import com.example.forage.ui.adapter.ForageableListAdapter
 import com.example.forage.ui.viewmodel.ForageableViewModel
+import com.example.forage.ui.viewmodel.ForageableViewModelFactory
 
 /**
  * A fragment to view the list of [Forageable]s stored in the database.
@@ -40,7 +41,7 @@ class ForageableListFragment : Fragment() {
     //  from BaseApplication
     private val viewModel: ForageableViewModel by activityViewModels {
         ForageableViewModelFactory(
-            (activity?.application as BaseApplication).database.foragableDao()
+            (activity?.application as BaseApplication).database.forageDao()
         )
     }
 
