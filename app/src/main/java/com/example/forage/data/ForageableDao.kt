@@ -31,6 +31,8 @@ interface ForageableDao {
     fun getForageables() : Flow<List<Forageable>>
 
     // TODO: implement a method to retrieve a Forageable from the database by id
+    @Query("SELECT * FROM Forageable WHERE id = :id ")
+    fun getForageable(id : Long): Flow<Forageable>
 
     // TODO: implement a method to insert a Forageable into the database
     //  (use OnConflictStrategy.REPLACE)
