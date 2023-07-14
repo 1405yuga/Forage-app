@@ -74,7 +74,8 @@ class ForageableViewModel(private val forageableDao: ForageableDao) : ViewModel(
             notes = notes
         )
         viewModelScope.launch(Dispatchers.IO) {
-            // TODO: call the DAO method to update a forageable to the database here
+            //  call the DAO method to update a forageable to the database here
+            forageableDao.update(forageable)
         }
     }
 
