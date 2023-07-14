@@ -81,7 +81,8 @@ class ForageableViewModel(private val forageableDao: ForageableDao) : ViewModel(
 
     fun deleteForageable(forageable: Forageable) {
         viewModelScope.launch(Dispatchers.IO) {
-            // TODO: call the DAO method to delete a forageable to the database here
+            //  call the DAO method to delete a forageable to the database here
+            forageableDao.delete(forageable)
         }
     }
 
