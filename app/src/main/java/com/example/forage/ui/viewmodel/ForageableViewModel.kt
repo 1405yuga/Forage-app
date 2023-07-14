@@ -36,8 +36,11 @@ class ForageableViewModel(private val forageableDao: ForageableDao) : ViewModel(
     //  create a property to set to a list of all forageables from the DAO
     val allForageables : LiveData<List<Forageable>> = forageableDao.getForageables().asLiveData()
 
-    // TODO : create method that takes id: Long as a parameter and retrieve a Forageable from the
+    //  create method that takes id: Long as a parameter and retrieve a Forageable from the
     //  database by id via the DAO.
+    public fun getForageable(id : Long) : LiveData<Forageable>{
+        return forageableDao.getForageable(id).asLiveData()
+    }
 
     fun addForageable(
         name: String,
