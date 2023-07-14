@@ -25,4 +25,6 @@ import com.example.forage.model.Forageable
  */
 // TODO: create the database with all necessary annotations, methods, variables, etc.
 @Database(entities = [Forageable::class], version = 1, exportSchema = false)
-abstract class ForageDatabase : RoomDatabase()
+abstract class ForageDatabase : RoomDatabase(){
+    abstract fun forageDao() : ForageableDao
+}
