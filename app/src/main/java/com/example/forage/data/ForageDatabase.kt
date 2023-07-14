@@ -20,6 +20,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.forage.model.Forageable
+import kotlin.concurrent.Volatile
 
 /**
  * Room database to persist data for the Forage app.
@@ -32,6 +33,7 @@ abstract class ForageDatabase : RoomDatabase(){
     abstract fun forageDao() : ForageableDao
 
     companion object{
+        @Volatile
         private var INSTANCE : ForageDatabase? = null
 
         fun getDatabase(context: Context) : ForageDatabase{
