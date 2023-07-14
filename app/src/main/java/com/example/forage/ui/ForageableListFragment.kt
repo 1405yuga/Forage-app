@@ -22,6 +22,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.example.forage.BaseApplication
 import com.example.forage.R
 import com.example.forage.databinding.FragmentForageableListBinding
 import com.example.forage.ui.adapter.ForageableListAdapter
@@ -34,10 +35,14 @@ import com.example.forage.ui.viewmodel.ForageableViewModel
  */
 class ForageableListFragment : Fragment() {
 
-    // TODO: Refactor the creation of the view model to take an instance of
+    //  Refactor the creation of the view model to take an instance of
     //  ForageableViewModelFactory. The factory should take an instance of the Database retrieved
     //  from BaseApplication
-    private val viewModel: ForageableViewModel by activityViewModels()
+    private val viewModel: ForageableViewModel by activityViewModels {
+        ForageableViewModelFactory(
+            (activity?.application as BaseApplication).database.foragableDao()
+        )
+    }
 
     private var _binding: FragmentForageableListBinding? = null
 
