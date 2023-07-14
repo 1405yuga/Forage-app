@@ -26,21 +26,22 @@ import kotlin.concurrent.Volatile
  * Room database to persist data for the Forage app.
  * This database stores a [Forageable] entity
  */
-// TODO: create the database with all necessary annotations, methods, variables, etc.
+//  create the database with all necessary annotations, methods, variables, etc.
 @Database(entities = [Forageable::class], version = 1, exportSchema = false)
-abstract class ForageDatabase : RoomDatabase(){
+abstract class ForageDatabase : RoomDatabase() {
 
-    abstract fun forageDao() : ForageableDao
+    abstract fun forageDao(): ForageableDao
 
-    companion object{
+    companion object {
         @Volatile
-        private var INSTANCE : ForageDatabase? = null
+        private var INSTANCE: ForageDatabase? = null
 
-        fun getDatabase(context: Context) : ForageDatabase{
-            return INSTANCE ?: synchronized(this){
-                val instance = Room.databaseBuilder(context, ForageDatabase::class.java ,"forage_database")
-                    .fallbackToDestructiveMigration()
-                    .build()
+        fun getDatabase(context: Context): ForageDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance =
+                    Room.databaseBuilder(context, ForageDatabase::class.java, "forage_database")
+                        .fallbackToDestructiveMigration()
+                        .build()
 
                 INSTANCE = instance
                 instance
